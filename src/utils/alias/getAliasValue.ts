@@ -119,7 +119,7 @@ export function getAliasValue(token: SingleToken | string | number, tokens: Sing
       }
     }
   } catch (err) {
-    console.log(`Error getting alias value of ${JSON.stringify(token, null, 2)}`, tokens);
+    // console.log(`Error getting alias value of ${JSON.stringify(token, null, 2)}`, tokens);
     return null;
   }
 

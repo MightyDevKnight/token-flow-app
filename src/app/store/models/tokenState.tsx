@@ -46,7 +46,7 @@ export interface TokenState {
 export const tokenState = createModel<RootModel>()({
   state: {
     tokens: {
-      global: [],
+      
     },
     themes: [],
     lastSyncedState: JSON.stringify([{ global: [] }, []], null, 2),
@@ -226,9 +226,10 @@ export const tokenState = createModel<RootModel>()({
     updateTokenTypesStatusList: (state, data: string) => {
       const newTokenTypesStatusList = state.tokenTypesStatusList.map((item) => {
         if (item.name === data)
-          return { name: data, checked: !item.checked.valueOf}
-        return item
+          return { name: data, checked: !item.checked }
+        return item;
       });
+      console.log('updateTokenTypesStatusList', newTokenTypesStatusList);
       return {
         ...state,
         tokenTypesStatusList: newTokenTypesStatusList

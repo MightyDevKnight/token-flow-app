@@ -24,7 +24,6 @@ interface AvailableTheme {
 
 export default function Theme(){
   const tokenTypesStatusList = useSelector(tokenTypesStatusListSelector);
-  console.log('tokenTypesStatusList', tokenTypesStatusList);
   return (
     <div>
       { tokenTypesStatusList.map(tokenTypeStatusItem => (

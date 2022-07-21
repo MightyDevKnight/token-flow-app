@@ -24,3 +24,4 @@ export * from './collapsedTokenSetsSelector';
 export * from './collapsedTokenTypeObjSelector';
 export * from './scrollPositionSetSelector';
 export * from './themeObjectsSelector';
+export * from './TokenTypesSelector';

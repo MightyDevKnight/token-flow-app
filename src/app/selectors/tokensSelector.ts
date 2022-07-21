@@ -4,7 +4,7 @@ import { tokenStateSelector } from './tokenStateSelector';
 
 export const tokensSelector = createSelector(
   tokenStateSelector,
-  (state) => state.tokens,
+  (state) => state.tokens.global,
   {
     memoizeOptions: {
       resultEqualityCheck: isEqual,

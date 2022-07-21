@@ -31,7 +31,7 @@ export function checkIfAlias(token: SingleToken | string, allTokens: SingleToken
       return aliasValue != null;
     }
   } catch (e) {
-    console.log(`Error checking alias of token ${typeof token === 'object' ? token.name : token}`, token, allTokens, e);
+    // console.log(`Error checking alias of token ${typeof token === 'object' ? token.name : token}`, token, allTokens, e);
   }
   return false;
 }

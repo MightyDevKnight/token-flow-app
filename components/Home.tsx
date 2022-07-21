@@ -6,6 +6,7 @@ import convertToTokenArray from '@/utils/convertTokens'
 import NodeFlow from './NodeFlow/NodeFlow'
 import { SingleToken } from '@/types/tokens'
 import Theme from './Theme'
+import Box from './Box'
 
 interface TokenData {
   token: string,
@@ -34,11 +35,11 @@ const Home = ({
   dispatch.tokenState.setActiveTheme(activeTheme);
   dispatch.tokenState.setTokenData({values: tokenArray, themes: themes, activeTheme: tokenData.themeData.activeTheme});
   return (
-    <>
+    <div style={{ display: 'flex'}}>
       <Theme />
-      {/* <NodeFlow tokenArray={tokenArray} /> */}
-    </>
-  )
+      <NodeFlow tokenArray={tokenArray}/>
+    </div>
+  );
 }
 
 export default Home

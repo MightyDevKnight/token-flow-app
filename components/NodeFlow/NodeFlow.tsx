@@ -28,6 +28,8 @@ import ParentNode from "./ParentNode";
 import GroupNode from "./GroupNode";
 import getInitialData from './initialElements';
 import { SingleToken } from "@/types/tokens";
+import { useSelector } from "react-redux";
+import { tokensSelector, tokenTypesSelector } from "@/app/selectors";
 
 const onLoad = (reactFlowInstance: OnLoadParams) =>
   console.log("flow loaded:", reactFlowInstance);
@@ -52,7 +54,11 @@ interface NodeFlowProps {
 export default function NodeFlow ({
   tokenArray
 }: NodeFlowProps) {
-  const [initialNodes, initialEdges] = getInitialData(tokenArray);
+  const filteredTypes = useSelector(tokenTypesSelector);
+  console.log('filteredTypes', filteredTypes);
+  const newTokenArray = tokenArray.filter((token) => filteredTypes.includes(token.type));
+  console.log('newTokenArray', newTokenArray);
+  const [initialNodes, initialEdges] = getInitialData(newTokenArray);
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
   const [bgColor, setBgColor] = useState<string>(initBgColor);
@@ -110,8 +116,12 @@ export default function NodeFlow ({
   //   },
   //   [nodes]
   // );
+  useEffect(() => {
+    setNodes(initialNodes);
+  }, [newTokenArray, filteredTypes]);
+
   return (
-    <div style={{ height: '100vh' }} className="layoutflow">
+    <div style={{ height: '100', width: '100%' }} className="layoutflow">
       <ReactFlowProvider>
         <ReactFlow
           nodes={nodes} 

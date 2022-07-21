@@ -61,11 +61,11 @@ const TokenTypesTreeItem: React.FC<TokenTypesTreeItemProps> = ({
   tokenTypeStatus
 }) => {
   const dispatch = useDispatch<Dispatch>();
-  const [isChecked, setIsChecked] = React.useState(true);  
+  const [isChecked, setIsChecked] = React.useState(true);
   const handleSwithcClicked = React.useCallback(() => {
     setIsChecked(!isChecked);
-    
-  }, [isChecked]);
+    dispatch.tokenState.updateTokenTypesStatusList(tokenTypeStatus.name);
+  }, [dispatch.tokenState, isChecked, tokenTypeStatus.name]);
 
   return (
     <form>
