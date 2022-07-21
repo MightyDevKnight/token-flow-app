@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { styled } from '@stitches/react';
 import { violet, mauve, blackA, whiteA } from '@radix-ui/colors';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
-import { RootState } from "../store";
-import { updateTokenTypeStatus } from '../store/tokenTypeStatusState';
+import { RootState } from "@/app/store";
+import { TokenSetStatus } from '@/constants/TokenSetStatus';
+import { Dispatch } from '@/app/store';
+import { TokenTypeStatusItem } from '@/types';
 
 const StyledSwitch = styled(SwitchPrimitive.Root, {
   all: 'unset',
@@ -51,28 +53,20 @@ const Label = styled('label', {
   userSelect: 'none',
 });
 
-type Props = {
-  tokenType?: string;
+interface TokenTypesTreeItemProps {
+  tokenTypeStatus: TokenTypeStatusItem;
 }
 
-const TreeItem: React.FC<Props> = ({
-  tokenType
+const TokenTypesTreeItem: React.FC<TokenTypesTreeItemProps> = ({
+  tokenTypeStatus
 }) => {
-  const dispatch = useDispatch();
-  const [isChecked, setIsChecked] = React.useState(true);
-  const tokenTypeChecked = useSelector((state: RootState) => (state.tokenType));
+  const dispatch = useDispatch<Dispatch>();
+  const [isChecked, setIsChecked] = React.useState(true);  
   const handleSwithcClicked = React.useCallback(() => {
-    dispatch(updateTokenTypeStatus({name: tokenType}));
     setIsChecked(!isChecked);
+    
   }, [isChecked]);
 
-  useEffect(() => {
-    Object.entries(tokenTypeChecked).forEach(t => {
-      if(t[0] === tokenType){
-        setIsChecked(t[1]);
-    }
-  })
-  }, [isChecked]);
   return (
     <form>
       <Flex css={{ alignItems: 'center' }}>
@@ -80,10 +74,10 @@ const TreeItem: React.FC<Props> = ({
           <SwitchThumb />
         </Switch>
         <Label htmlFor="s1" css={{ paddingRight: 15 }}>
-          {tokenType}
+          {tokenTypeStatus.name}
         </Label>
       </Flex>
     </form>
   );
 }
-export default TreeItem;
+export default TokenTypesTreeItem;

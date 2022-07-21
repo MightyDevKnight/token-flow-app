@@ -5,6 +5,7 @@ import { Dispatch } from '@/app/store'
 import convertToTokenArray from '@/utils/convertTokens'
 import NodeFlow from './NodeFlow/NodeFlow'
 import { SingleToken } from '@/types/tokens'
+import Theme from './Theme'
 
 interface TokenData {
   token: string,
@@ -34,7 +35,8 @@ const Home = ({
   dispatch.tokenState.setTokenData({values: tokenArray, themes: themes, activeTheme: tokenData.themeData.activeTheme});
   return (
     <>
-      <NodeFlow tokenArray={tokenArray} />
+      <Theme />
+      {/* <NodeFlow tokenArray={tokenArray} /> */}
     </>
   )
 }

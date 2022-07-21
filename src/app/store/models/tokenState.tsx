@@ -23,7 +23,8 @@ import { isEqual } from '@/utils/isEqual';
 import { updateTokenSetsInState } from '@/utils/tokenset/updateTokenSetsInState';
 import { TokenTypes } from '@/constants/TokenTypes';
 import tokenTypes from '@/config/tokenType.defs.json';
-
+import { TokenTypeStatusItem } from '@/types';
+import { string } from 'zod';
 export interface TokenState {
   tokens: Record<string, AnyTokenList>;
   themes: ThemeObjectsList;
@@ -38,7 +39,8 @@ export interface TokenState {
   editProhibited: boolean;
   hasUnsavedChanges: boolean;
   collapsedTokenSets: string[];
-  collapsedTokenTypeObj: Record<TokenTypes, boolean>
+  collapsedTokenTypeObj: Record<TokenTypes, boolean>,
+  tokenTypesStatusList: TokenTypeStatusItem[],
 }
 
 export const tokenState = createModel<RootModel>()({
@@ -64,6 +66,9 @@ export const tokenState = createModel<RootModel>()({
       acc[tokenType as TokenTypes] = false;
       return acc;
     }, {}),
+    tokenTypesStatusList: Object.keys(tokenTypes).map(tokenType => {
+      return {name: tokenType, checked: true}
+    })
   } as unknown as TokenState,
   reducers: {
     setEditProhibited(state, payload: boolean) {
@@ -218,6 +223,17 @@ export const tokenState = createModel<RootModel>()({
       ...state,
       collapsedTokenTypeObj: data,
     }),
+    updateTokenTypesStatusList: (state, data: string) => {
+      const newTokenTypesStatusList = state.tokenTypesStatusList.map((item) => {
+        if (item.name === data)
+          return { name: data, checked: !item.checked.valueOf}
+        return item
+      });
+      return {
+        ...state,
+        tokenTypesStatusList: newTokenTypesStatusList
+      };
+    },
     ...tokenStateReducers,
   },
   effects: (dispatch) => ({
