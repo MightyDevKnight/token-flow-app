@@ -12,6 +12,7 @@ import { CheckIcon } from "@radix-ui/react-icons";
 import { useSelector } from "react-redux";
 import { tokenTypesStatusListSelector } from "@/app/selectors/tokenTypesStatusListSelector";
 import TokenTypesTreeItem from "./TokenTypesTreeItem";
+import { ThemeSelector } from "./ThemeSelector";
 
 const ThemeDropdownLabel = styled(Text, {
   marginRight: '$2',
@@ -25,11 +26,13 @@ interface AvailableTheme {
 export default function Theme(){
   const tokenTypesStatusList = useSelector(tokenTypesStatusListSelector);
   return (
-    <div>
-      { tokenTypesStatusList.map(tokenTypeStatusItem => (
-        <TokenTypesTreeItem tokenTypeStatus={tokenTypeStatusItem} key={tokenTypeStatusItem.name}/>
-      ) )
-      }
+    <div style={{ display: 'flow', width: '300px'}}>
+      <ThemeSelector />
+      <div>
+        {tokenTypesStatusList.map(tokenTypeStatusItem => (
+          <TokenTypesTreeItem tokenTypeStatus={tokenTypeStatusItem} key={tokenTypeStatusItem.name} />
+        ))}
+      </div>
     </div>
   )
 };

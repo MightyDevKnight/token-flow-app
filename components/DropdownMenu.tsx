@@ -25,6 +25,7 @@ const StyledDropdownMenuContent = styled(DropdownMenuPrimitive.Content, {
   borderRadius: '$contextMenu',
   padding: '$2',
   boxShadow: '$contextMenu',
+  zIndex: 1,
 });
 
 const StyledDropdownMenuCheckboxItem = styled(DropdownMenuPrimitive.CheckboxItem, itemStyles);

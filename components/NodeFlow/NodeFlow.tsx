@@ -55,9 +55,7 @@ export default function NodeFlow ({
   tokenArray
 }: NodeFlowProps) {
   const filteredTypes = useSelector(tokenTypesSelector);
-  console.log('filteredTypes', filteredTypes);
   const newTokenArray = tokenArray.filter((token) => filteredTypes.includes(token.type));
-  console.log('newTokenArray', newTokenArray);
   const [initialNodes, initialEdges] = getInitialData(newTokenArray);
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
@@ -118,7 +116,7 @@ export default function NodeFlow ({
   // );
   useEffect(() => {
     setNodes(initialNodes);
-  }, [newTokenArray, filteredTypes]);
+  }, [filteredTypes]);
 
   return (
     <div style={{ height: '100', width: '100%' }} className="layoutflow">

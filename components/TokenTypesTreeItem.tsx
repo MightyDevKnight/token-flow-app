@@ -69,7 +69,7 @@ const TokenTypesTreeItem: React.FC<TokenTypesTreeItemProps> = ({
 
   return (
     <form>
-      <Flex css={{ alignItems: 'center' }}>
+      <Flex css={{ alignItems: 'center', zIndex: 0 }}>
         <Switch checked={isChecked} id="s1" onCheckedChange={handleSwithcClicked} >
           <SwitchThumb />
         </Switch>

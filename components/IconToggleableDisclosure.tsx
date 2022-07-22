@@ -1,5 +1,5 @@
 import { styled } from '@/stitches.config';
-import IconDisclosure from './icons/disclosure.svg';
+import  { IconDisclosure } from '@/app/assets/icons';
 
 const IconToggleableDisclosure = styled(
   IconDisclosure,

@@ -3,7 +3,6 @@ const position = { x: 0, y: 0 };
 const edgeType = "smoothstep";
 
 export default function getInitialData( converted ){
-  console.log('converted', converted);
   
   // write a function that takes in a token array and returns unique parent ids depending on nested level
   function getParentIds(tokenArray) {
